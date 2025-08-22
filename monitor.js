@@ -3,6 +3,7 @@
 //Take a another snapshot after 1 sec
 
 import os from "node:os";
+import chalk from "chalk";
 
 function monitor() {
 	const oldCPU = os.cpus();
@@ -18,6 +19,8 @@ function monitor() {
 		});
 
 		console.clear();
+    console.log(chalk.bgCyan("++++++++++++++System Stats++++++++++++++"));
+    
 		console.table(usage);
 
 		const usedMemory = (os.totalmem() - os.freemem()) * (1024 * 1024 * 1024);
