@@ -32,7 +32,7 @@ function createfile(pathname) {
 		}
 	);
 
-	console.log("See your new file here: ./hello.txt");
+	console.log("See your new file here: ./hello.txt");//synchronous line!!!
 }
 
 createfile("./hello.txt");
