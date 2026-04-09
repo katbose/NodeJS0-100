@@ -9,6 +9,7 @@ import {
 	deleteFile,
 	listItems,
 } from "./fileSystemCRUD.js";
+import { clear, log } from "node:console";
 
 const rl = readline.createInterface({
 	input: stdin,
@@ -16,6 +17,7 @@ const rl = readline.createInterface({
 });
 
 async function fileMenu() {
+	console.clear();
 	console.log(chalk.blue.bold("\n 🗂️  File System Manager \n"));
 
 	const options = [
@@ -91,7 +93,13 @@ async function fileMenu() {
 		case "7":
 			rl.close();
 			return;
+
+		default:
+			console.log(chalk.red("🔥🔥🔥🔥Invalid option🔥🔥🔥🔥"));
 	}
+
+	await rl.question(chalk.gray("\nPress ENTER to continue..."));
+	fileMenu();
 }
 
 fileMenu();
