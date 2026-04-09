@@ -24,7 +24,6 @@ async function fileMenu() {
 		"Edit file",
 		"Delete Folder",
 		"Delete File",
-		"Write file",
 		"List Items",
 		"Exit",
 	];
@@ -77,16 +76,21 @@ async function fileMenu() {
 			console.log(`✅ File deleted successfully!!!`);
 			break;
 
-		case "7":
+		case "6":
 			const listPath = await rl.question(
-				chalk.blue("Enter the folder path *press ENTER fo current*: "),
+				chalk.blue("Folder path (Enter for current): "),
 			);
-			await listItems(listPath);
-			console.log(chalk.blue(`List of Contents:`));
+			const items = await listItems(listPath || "./");
+			console.log(chalk.blue("\nContents: "));
+			items.forEach((item) => {
+				const icon = item.type === "folder" ? "📁" : "📄";
+				console.log(`${icon} ${chalk.yellow(item.name)}`);
+			});
 			break;
-			
-		default:
-			break;
+
+		case "7":
+			rl.close();
+			return;
 	}
 }
 
